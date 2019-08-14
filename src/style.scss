@@ -14,15 +14,10 @@ $font-color: (
   border-radius: 4px;
   padding: 20px;
   margin: 20px auto;
-}
-
-label {
-  &:hover {
-    color: map-get($font-color, light);
-  }
-
-  &.checked {
-    color: #005a96;
+  
+  & > li {
+    display: inline-block;
+    list-style: none;
   }
 }
 
@@ -30,9 +25,10 @@ label {
   display: none;
 }
 
-.checkbox + .checkbox-icon {
-  position: relative;
-  vertical-align: middle;
+.checkbox + .checkbox-label {
+  &:hover {
+    color: map-get($font-color, light);
+  }
 
   &::before {
     position: relative;
@@ -52,7 +48,9 @@ label {
   }
 }    
 
-.checkbox:checked + .checkbox-icon {
+.checkbox:checked + .checkbox-label {
+  color: #005a96;
+
   &::before {
     content: '\2713';
     top: 1px;

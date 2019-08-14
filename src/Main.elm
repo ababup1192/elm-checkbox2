@@ -58,19 +58,28 @@ view : Model -> Browser.Document Msg
 view model =
     { title = "Elm 0.19 starter"
     , body =
-        [ div [ class "sample-elm-ui-components" ] <|
-            List.map
-                (\v ->
-                    label []
+        [ ul [ class "sample-elm-ui-components" ] <|
+            List.indexedMap
+                (\i v ->
+                    let
+                        checkboxId =
+                            "food_" ++ String.fromInt i
+                    in
+                    li []
                         [ input
                             [ type_ "checkbox"
+                            , id checkboxId
                             , class "checkbox"
                             , value v
                             , checked <| List.member v model.checkedValueList
                             , onChangeWithValue UpdateCheck
                             ]
                             []
-                        , span [ class "checkbox-icon" ] [ text v ]
+                        , label
+                            [ for checkboxId
+                            , class "checkbox-label"
+                            ]
+                            [ text v ]
                         ]
                 )
                 foods
